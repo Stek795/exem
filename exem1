@@ -1,0 +1,34 @@
+from nucleopy.molecules.dna import DNA
+text = ''
+with open("sequence (2).fasta", 'r') as f:
+    for i, x in enumerate(f):
+        if 1 <= i:
+          text += f.read()
+          listDNA = DNA(text)
+          listPol = DNA(listDNA[::-1])
+          listComp = listPol.complement()
+# listComp = listDNA.complement()
+# listREV = listComp[::-1]
+for i in range(len(listDNA)):
+    for strain_start in range(len(listDNA)):
+       stem = []
+       match = []
+       stem2 = []
+       B = []
+       for n in range(int((len(listDNA) - i - strain_start) / 2)):
+           if listDNA[i+n] == listComp[i+n]:
+               stem += listDNA[i+n]
+               match += listPol[i+n]
+               print(stem)
+           else:
+               break
+
+       # for j in range(len(stem)):
+       #     if int(len(stem)) < 12:
+       #         if int(len(stem)) > 2:
+       #             B.append(stem[j])
+       #             print(B)
+       #         else:
+       #             break
+       #     else:
+       #         break
